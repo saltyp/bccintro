@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import pokemon from './pokemon.json';
+
 
 function App() {
   return (
@@ -17,6 +19,16 @@ function App() {
             <th>Type</th>
           </tr>
         </thead>
+        <tbody>
+          {pokemon.slice(0,20).map((p) => (
+            <tr
+              key={p.id}
+            >
+              <td>{p.name.english}</td>
+              <td>{p.type.join(", ")}</td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
