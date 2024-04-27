@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import PropTypes from 'prop-types';
-
+import styled from "@emotion/styled";
 
 const PokemonRow = ({pokemon, onSelect}) => (
   <tr>
@@ -40,6 +40,26 @@ const PokemonInfo = ({name, base}) => (
   </div>
 );  
 
+// styled componenets: OBS semicolons used, hypenated instead of camelCase, no quotations
+const Title = styled.h1`
+  text-align: center;
+`;
+const TwoColumnLayout = styled.div`
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-column-gap: 10rem;
+`;
+const Input = styled.input`
+  width: 100%;
+  font-size: large;
+  padding: 0.2rem;
+`;
+const Container = styled.div`
+  margin: auto;
+  width: 800px;
+  padding-top: 1rem;
+`;
+
 function App() {
   const [filter, setFilter] = React.useState("");
   const [pokemon, setPokemon] = React.useState([]);
@@ -51,22 +71,11 @@ function App() {
       .then(data => setPokemon(data));
   }, []);
   return (
-    <div
-      style = {{
-        margin: 'auto',
-        width: 800,
-        paddingTop: "lrem"
-      }}>
-      <h1 className='title' >Pokemon Search</h1>
-      <div
-        style={{
-          display:"grid",
-          gridTemplateColumns:"70% 30%",
-          gridColumnGap: "1rem",
-        }}
-      >
+    <Container>
+      <Title>Pokemon Search</Title>
+      <TwoColumnLayout>
         <div> 
-        <input 
+        <Input 
         value = {filter}
         onChange = {(evt) => setFilter(evt.target.value)}
         />
@@ -87,8 +96,8 @@ function App() {
         </table>
         </div>
         {selectedItem && <PokemonInfo {...selectedItem}/>}
-      </div>
-    </div>
+      </TwoColumnLayout>
+    </Container>
   );
 }
 
