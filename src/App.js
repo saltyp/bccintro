@@ -1,7 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import pokemon from './pokemon.json';
 import PropTypes from 'prop-types';
 
 
@@ -41,10 +40,16 @@ const PokemonInfo = ({name, base}) => (
   </div>
 );  
 
-
 function App() {
   const [filter, setFilter] = React.useState("");
+  const [pokemon, setPokemon] = React.useState([]);
   const [selectedItem, selectedItemSet] = React.useState(null);
+
+  React.useEffect(() => { // useEffect is used to fetch data from the server  
+    fetch("http://localhost:3000/bccintro/pokemon.json")
+      .then(res => res.json())
+      .then(data => setPokemon(data));
+  }, []);
   return (
     <div
       style = {{
