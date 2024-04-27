@@ -1,6 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
 import pokemon from './pokemon.json';
+import PropTypes from 'prop-types';
+
+
+const PokemonRow = ({pokemon}) => (
+  <tr>
+    <td>{pokemon.name.english}</td>
+    <td>{pokemon.type.join(", ")}</td>
+  </tr>
+);
+
+// minimum set of properties for a component
+// DEPRECATED in favor of TypeScript
+PokemonRow.propTypes = {
+  pokemon: PropTypes.shape({  // shape is used to specify the object structure,
+    name: PropTypes.shape({
+      english: PropTypes.string,
+    }),
+    type: PropTypes.arrayOf(PropTypes.string),
+  }), 
+};
 
 
 function App() {
@@ -19,14 +39,9 @@ function App() {
             <th>Type</th>
           </tr>
         </thead>
-        <tbody>
-          {pokemon.slice(0,20).map((p) => (
-            <tr
-              key={p.id}
-            >
-              <td>{p.name.english}</td>
-              <td>{p.type.join(", ")}</td>
-            </tr>
+         <tbody>
+          {pokemon.slice(0,20).map((pokemon) => (
+            <PokemonRow pokemon={pokemon } key={pokemon.id}/>
           ))}
         </tbody>
       </table>
