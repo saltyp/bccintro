@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/bccintro/static/css/main.f855e6bc.css",
+    "main.js": "/bccintro/static/js/main.f2f4688d.js",
+    "static/js/453.82f44887.chunk.js": "/bccintro/static/js/453.82f44887.chunk.js",
+    "static/media/logo.svg": "/bccintro/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/bccintro/index.html",
+    "main.f855e6bc.css.map": "/bccintro/static/css/main.f855e6bc.css.map",
+    "main.f2f4688d.js.map": "/bccintro/static/js/main.f2f4688d.js.map",
+    "453.82f44887.chunk.js.map": "/bccintro/static/js/453.82f44887.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.f2f4688d.js"
+  ]
+}
