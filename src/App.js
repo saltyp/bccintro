@@ -1,3 +1,4 @@
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import pokemon from './pokemon.json';
@@ -24,6 +25,7 @@ PokemonRow.propTypes = {
 
 
 function App() {
+  const [filter, setFilter] = React.useState("");
   return (
     <div
       style = {{
@@ -32,6 +34,10 @@ function App() {
         paddingTop: "lrem"
       }}>
       <h1 className='title' >Pokemon Search</h1>
+      <input 
+        value = {filter}
+        onChange = {(evt) => setFilter(evt.target.value)}
+      />
       <table width="100%">
         <thead>
           <tr>
@@ -40,7 +46,9 @@ function App() {
           </tr>
         </thead>
          <tbody>
-          {pokemon.slice(0,20).map((pokemon) => (
+          {pokemon 
+            .filter((pokemon) => pokemon.name.english.toLowerCase().includes(filter.toLowerCase()))
+            .slice(0,20).map((pokemon) => (
             <PokemonRow pokemon={pokemon } key={pokemon.id}/>
           ))}
         </tbody>
