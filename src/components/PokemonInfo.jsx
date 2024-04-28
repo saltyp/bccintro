@@ -1,20 +1,25 @@
 // import PropTypes from 'prop-types';
-import React from "react";
+import React, {useContext} from "react";
 import PokemonType from "../PokemonType";
+import PokemonContext from "../PokemonContext"; 
 
-const PokemonInfo = ({name, base}) => (
+const PokemonInfo = () => {
+  const { selectedItem } = useContext(PokemonContext);  
+  
+  return selectedItem ? (
     <div>
-      <h1>{name.english}</h1>
+      <h1>{selectedItem.name.english}</h1>
       <table>
-        {Object.keys(base).map((key) => (
+        {Object.keys(selectedItem.base).map((key) => (
           <tr key={key}>
             <td>{key}</td>
-            <td>{base[key]}</td>
+            <td>{selectedItem.base[key]}</td>
           </tr>
         ))}
       </table>
     </div>
-  );  
+  ) : null;
+};  
 
 PokemonInfo.propTypes = PokemonType;
 

@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import PokemonInfo from './components/PokemonInfo';
 import PokemonFilter from './components/PokemonFilter';
 import PokemonTable from './components/PokemonTable';
+import PokemonContext from './PokemonContext';
 
 // styled componenets: OBS semicolons used, hypenated instead of camelCase, no quotations
 const Title = styled.h1`
@@ -32,23 +33,26 @@ function App() {
       .then(data => setPokemon(data));
   }, []);
   return (
-    <Container>
+  <PokemonContext.Provider 
+    value={{
+      filter, setFilter,
+      pokemon, setPokemon,
+      selectedItem, selectedItemSet,
+    }}
+  >
+      <Container>
       <Title>Pokemon Search</Title>
       <TwoColumnLayout>
         <div> 
-        <PokemonFilter 
-            filter={filter} 
-            setFilter={setFilter}
-        />
-        <PokemonTable
-          pokemon={pokemon}
-          filter = {filter}
-          selectedItemSet={selectedItemSet}
-        />
+        <PokemonFilter />
+        <PokemonTable/>
         </div>
-        {selectedItem && <PokemonInfo {...selectedItem}/>}
+        <PokemonInfo/>}
       </TwoColumnLayout>
     </Container>
+  </PokemonContext.Provider>
+
+
   );
 }
 
